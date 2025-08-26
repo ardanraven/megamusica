@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Música - Fale com um Especialista Agora!</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #000000; 
+        }
+
+        /* Animação de brilho para os botões */
+        @keyframes glowing {
+            0% { box-shadow: 0 0 5px #f97316, 0 0 10px #f97316, 0 0 15px #f97316; }
+            50% { box-shadow: 0 0 20px #f97316, 0 0 30px #f97316, 0 0 40px #f97316; }
+            100% { box-shadow: 0 0 5px #f97316, 0 0 10px #f97316, 0 0 15px #f97316; }
+        }
+
+        .whatsapp-button {
+            transition: all 0.3s ease;
+            animation: glowing 2s infinite ease-in-out;
+        }
+        .whatsapp-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            animation-play-state: paused; /* Pausa o brilho no hover para destacar o scale */
+        }
+        
+        /* Efeito Parallax */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+        }
+        
+        /* Imagens de fundo específicas para cada seção */
+        .parallax-hero { background-image: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop'); }
+        .parallax-guitars { background-image: url('https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=2070&auto=format&fit=crop'); }
+        .parallax-keyboards { background-image: url('https://images.unsplash.com/photo-1612013825279-886109737434?q=80&w=2070&auto=format&fit=crop'); }
+        .parallax-drums { background-image: url('https://images.unsplash.com/photo-1607955593945-8ab3c1a83f90?q=80&w=1974&auto=format&fit=crop'); }
+        .parallax-studio { background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop'); }
+
+
+        /* Overlay para escurecer o fundo e dar legibilidade */
+        .parallax-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.65); /* Um pouco mais escuro para melhor contraste */
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <!-- ========== WHATSAPP FLOATING BUTTON ========== -->
+    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento." target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform" style="animation: glowing 2s infinite ease-in-out; box-shadow: 0 0 5px #25D366, 0 0 10px #25D366;">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- ========== HEADER ========== -->
+    <header class="bg-black/80 backdrop-blur-sm sticky top-0 left-0 w-full z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#">
+                <img src="https://i.ibb.co/0VMkJssN/MEGA-MUSICA-LOGO-PRINCIPAL-SEM-FUNDO.png" alt="[Logo da Mega Música]" class="h-12 md:h-14" onerror="this.onerror=null;this.src='https://placehold.co/200x60/000000/FFFFFF?text=Mega+M%C3%AAsica';">
+            </a>
+            <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento." target="_blank" class="whatsapp-button bg-orange-500 text-white font-bold py-2 px-6 rounded-full flex items-center gap-2">
+                <i class="fab fa-whatsapp"></i>
+                <span>Fale Conosco</span>
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ========== HERO SECTION ========== -->
+        <section class="parallax parallax-hero h-screen flex items-center justify-center text-center">
+            <div class="parallax-overlay"></div>
+            <div class="container mx-auto px-6 z-10 relative">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+                    O instrumento dos seus sonhos com <span class="text-orange-500">atendimento exclusivo</span>.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                    Chega de dúvidas! Fale agora com um de nossos especialistas no WhatsApp e receba uma consultoria gratuita para encontrar o som perfeito para você.
+                </p>
+                <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20uma%20consultoria%20gratuita%20para%20escolher%20meu%20instrumento." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold text-lg py-4 px-10 rounded-full">
+                    <i class="fab fa-whatsapp mr-2"></i>
+                    Receber Consultoria Gratuita
+                </a>
+            </div>
+        </section>
+
+        <!-- Espaçamento entre seções parallax -->
+        <div class="bg-black py-20">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold">Encontre o que você procura</h2>
+                 <div class="w-24 h-1 bg-orange-500 mx-auto mt-4"></div>
+                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Nossos especialistas são músicos apaixonados e estão prontos para te ajudar a escolher o equipamento certo em cada categoria.</p>
+            </div>
+        </div>
+
+        <!-- ========== SEÇÃO GUITARRAS ========== -->
+        <section class="parallax parallax-guitars min-h-[55vh] flex items-center justify-center">
+            <div class="parallax-overlay"></div>
+            <div class="container mx-auto px-6 z-10 relative flex justify-center">
+                <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Guitarras & Baixos</h2>
+                    <p class="text-gray-300 mb-6">Do rock ao jazz, do funk ao metal. Temos o instrumento de cordas certo para o seu groove. Fale com um especialista e descubra as melhores marcas e modelos com condições imperdíveis.</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20ver%20as%20op%C3%A7%C3%B5es%20de%20guitarras%20e%20baixos." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Ver Guitarras e Baixos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SEÇÃO TECLADOS ========== -->
+        <section class="parallax parallax-keyboards min-h-[55vh] flex items-center justify-center">
+            <div class="parallax-overlay"></div>
+            <div class="container mx-auto px-6 z-10 relative flex justify-center">
+                 <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Teclados & Pianos</h2>
+                    <p class="text-gray-300 mb-6">Procurando um piano digital para estudar, um sintetizador para criar ou um controlador para seu estúdio? Temos a tecla certa para você. Peça um orçamento personalizado agora mesmo.</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20teclados%20e%20pianos." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Pedir Orçamento de Teclados
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SEÇÃO BATERIAS ========== -->
+        <section class="parallax parallax-drums min-h-[55vh] flex items-center justify-center">
+            <div class="parallax-overlay"></div>
+            <div class="container mx-auto px-6 z-10 relative flex justify-center">
+                <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Baterias & Percussão</h2>
+                    <p class="text-gray-300 mb-6">O coração da banda precisa pulsar forte. Encontre kits de bateria acústica e eletrônica, pratos e acessórios das melhores marcas. Fale conosco e monte o setup dos seus sonhos.</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20para%20montar%20um%20kit%20de%20bateria." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Montar meu Kit de Bateria
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SEÇÃO ESTÚDIO ========== -->
+        <section class="parallax parallax-studio min-h-[55vh] flex items-center justify-center">
+            <div class="parallax-overlay"></div>
+            <div class="container mx-auto px-6 z-10 relative flex justify-center">
+                <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Equipamentos de Estúdio & DJ</h2>
+                    <p class="text-gray-300 mb-6">Interfaces de áudio, microfones, monitores, controladoras de DJ... Tudo o que você precisa para produzir, gravar e tocar com qualidade profissional. Consulte nossos especialistas!</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20equipamentos%20de%20est%C3%BAdio%20e%20DJ." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Consultar Equipamentos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FINAL CTA SECTION ========== -->
+        <section class="bg-black py-20">
+            <div class="container mx-auto px-6">
+                <div class="bg-orange-600 rounded-lg p-10 md:p-16 text-center flex flex-col items-center">
+                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Não espere mais para ter seu instrumento!</h2>
+                    <p class="text-orange-100 text-lg max-w-2xl mb-8">
+                        Clique no botão abaixo e garanta uma <strong class="underline">oferta especial de boas-vindas</strong>. Válida somente para o primeiro contato!
+                    </p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20minha%20oferta%20especial%20de%20boas-vindas." target="_blank" class="whatsapp-button inline-block bg-white text-orange-600 font-bold text-lg py-4 px-10 rounded-full shadow-lg" style="animation: glowing 2s infinite ease-in-out; box-shadow: 0 0 10px #fff, 0 0 20px #fff;">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        Resgatar Minha Oferta Agora!
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-gray-900 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-orange-500 transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="#" class="hover:text-orange-500 transition-colors"><i class="fab fa-facebook-f text-2xl"></i></a>
+                <a href="#" class="hover:text-orange-500 transition-colors"><i class="fab fa-youtube text-2xl"></i></a>
+            </div>
+            <p>&copy; 2024 Mega Música. Atendimento personalizado para todo o Brasil.</p>
+            <p class="text-sm mt-2 text-gray-500">Rua da Música, 123 - Cidade, Estado</p>
+        </div>
+    </footer>
+
+</body>
+</html>
