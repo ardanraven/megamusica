@@ -3,183 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Música - Fale com um Especialista Agora!</title>
+    <title>Mega Música - A Experiência Sonora Definitiva</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Poppins -->
+    <!-- Google Fonts: Poppins (corpo) e Bebas Neue (títulos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" xintegrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-397950840"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'AW-397950840');
+    </script>
 
     <style>
+        /* Aplicando fontes base */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #000000; 
+            background-color: #0a0a0a;
+            overflow-x: hidden; /* Previne scroll horizontal causado por animações */
         }
 
-        /* Animação de brilho para os botões */
-        @keyframes glowing {
-            0% { box-shadow: 0 0 5px #f97316, 0 0 10px #f97316, 0 0 15px #f97316; }
-            50% { box-shadow: 0 0 20px #f97316, 0 0 30px #f97316, 0 0 40px #f97316; }
-            100% { box-shadow: 0 0 5px #f97316, 0 0 10px #f97316, 0 0 15px #f97316; }
+        h1, h2, h3 {
+            font-family: 'Bebas Neue', sans-serif;
         }
 
-        .whatsapp-button {
-            transition: all 0.3s ease;
-            animation: glowing 2s infinite ease-in-out;
+        /* --- NOVOS EFEITOS --- */
+        
+        /* Efeito de gradiente para texto */
+        .gradient-text {
+            background-image: linear-gradient(45deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
         }
-        .whatsapp-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            animation-play-state: paused; /* Pausa o brilho no hover para destacar o scale */
+
+        /* Canvas para partículas animadas */
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
         
-        /* Efeito Parallax */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative;
-        }
-        
-        /* Imagens de fundo específicas para cada seção */
-        .parallax-hero { background-image: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop'); }
-        .parallax-guitars { background-image: url('https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=2070&auto=format&fit=crop'); }
-        .parallax-keyboards { background-image: url('https://images.unsplash.com/photo-1612013825279-886109737434?q=80&w=2070&auto=format&fit=crop'); }
-        .parallax-drums { background-image: url('https://images.unsplash.com/photo-1531315335602-857f00a58a8a?q=80&w=2070&auto=format&fit=crop'); }
-        .parallax-studio { background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop'); }
-
-
         /* Overlay para escurecer o fundo e dar legibilidade */
-        .parallax-overlay {
+        .section-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.65); /* Um pouco mais escuro para melhor contraste */
+            background-color: rgba(0, 0, 0, 0.75); /* Mais escuro para melhor contraste */
+            z-index: 2;
         }
+
+        .content-z {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Animação Ken Burns (zoom sutil na imagem de fundo) */
+        @keyframes kenburns {
+            0% {
+                transform: scale(1.1) translate(0, 0);
+            }
+            100% {
+                transform: scale(1) translate(0, 0);
+            }
+        }
+
+        .bg-image-animated {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: kenburns 20s ease-out forwards;
+        }
+        
+        /* Animação de pulso para botões de CTA */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 10px 20px rgba(249, 115, 22, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+        }
+
+        .cta-button {
+            transition: all 0.3s ease;
+            animation: pulse 2.5s infinite;
+        }
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            animation-play-state: paused;
+        }
+        
+        /* Estilo para animações de scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efeito de Vidro (Glassmorphism) */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.6); /* Cor de fundo com transparência */
+            backdrop-filter: blur(15px); /* O efeito de desfoque */
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
     </style>
 </head>
 <body class="bg-black text-white">
 
     <!-- ========== WHATSAPP FLOATING BUTTON ========== -->
-    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento." target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform" style="animation: glowing 2s infinite ease-in-out; box-shadow: 0 0 5px #25D366, 0 0 10px #25D366;">
-        <i class="fab fa-whatsapp text-3xl"></i>
+    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento." target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform" style="animation: pulse 2.5s infinite; box-shadow: 0 0 5px #25D366, 0 0 10px #25D366;">
+        <i class="fab fa-whatsapp text-4xl"></i>
     </a>
 
     <!-- ========== HEADER ========== -->
-    <header class="bg-black/80 backdrop-blur-sm sticky top-0 left-0 w-full z-40">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header class="bg-black/60 backdrop-blur-sm sticky top-0 left-0 w-full z-40 transition-shadow duration-300" id="header">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <a href="#">
-                <img src="https://i.ibb.co/0VMkJssN/MEGA-MUSICA-LOGO-PRINCIPAL-SEM-FUNDO.png" alt="[Logo da Mega Música]" class="h-12 md:h-16" onerror="this.onerror=null;this.src='https://placehold.co/200x60/000000/FFFFFF?text=Mega+M%C3%AAsica';">
+                <!-- Logo com fallback -->
+                <img src="https://i.ibb.co/0VMkJssN/MEGA-MUSICA-LOGO-PRINCIPAL-SEM-FUNDO.png" alt="Logo da Mega Música" class="h-14 md:h-16" onerror="this.onerror=null;this.src='https://placehold.co/200x60/000000/FFFFFF?text=Mega+M%C3%BAsica';">
             </a>
-            <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento." target="_blank" class="whatsapp-button bg-orange-500 text-white font-bold py-2 px-6 rounded-full flex items-center gap-2">
+            <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento." target="_blank" class="bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 px-6 rounded-full flex items-center gap-2 transition-transform hover:scale-105">
                 <i class="fab fa-whatsapp"></i>
-                <span>Fale Conosco</span>
+                <span class="hidden sm:inline">Fale Conosco</span>
             </a>
         </nav>
     </header>
 
     <main>
         <!-- ========== HERO SECTION ========== -->
-        <section class="parallax parallax-hero h-screen flex items-center justify-center text-center">
-            <div class="parallax-overlay"></div>
-            <div class="container mx-auto px-6 z-10 relative">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-                    Pare de adiar <span class="text-orange-500">o sonho de tocar</span>.
+        <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop" class="bg-image-animated" alt="[Palco de show com luzes coloridas]">
+            <canvas id="particle-canvas"></canvas>
+            <div class="section-overlay"></div>
+            <div class="content-z container mx-auto px-6">
+                <h1 class="text-5xl md:text-8xl font-extrabold leading-tight mb-4 tracking-wider uppercase">
+                    Pare de adiar <span class="gradient-text">o sonho de tocar</span>.
                 </h1>
-                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">Fale no WhatsApp e receba consultoria gratuita para escolher com confiança. </p>
-                <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20uma%20consultoria%20gratuita%20para%20escolher%20meu%20instrumento." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold text-lg py-4 px-10 rounded-full">
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-3xl mx-auto">
+                    Fale com quem entende de verdade. Receba consultoria gratuita no WhatsApp e escolha o instrumento perfeito com total confiança.
+                </p>
+                <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20uma%20consultoria%20gratuita%20para%20escolher%20meu%20instrumento." target="_blank" class="cta-button inline-block bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold text-lg py-4 px-10 rounded-full shadow-lg">
                     <i class="fab fa-whatsapp mr-2"></i>
                     Falar com especialista!
                 </a>
             </div>
         </section>
 
-        <!-- Espaçamento entre seções parallax -->
+        <!-- Seção de transição -->
         <div class="bg-black py-20">
-            <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-3xl md:text-4xl font-bold">Encontre o instrumento certo com quem entende de música.</h2>
-                 <div class="w-24 h-1 bg-orange-500 mx-auto mt-4"></div>
-                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Nossos especialistas estão prontos para te orientar, do iniciante ao profissional, direto no WhatsApp.</p>
+            <div class="container mx-auto px-6 text-center reveal">
+                 <h2 class="text-4xl md:text-5xl font-bold">A nota certa para cada músico.</h2>
+                 <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mt-4"></div>
+                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">Do iniciante ao profissional, nossa equipe está pronta para te orientar na escolha do seu próximo instrumento, direto no WhatsApp.</p>
             </div>
         </div>
 
-        <!-- ========== SEÇÃO GUITARRAS ========== -->
-        <section class="parallax parallax-guitars min-h-[55vh] flex items-center justify-center">
-            <div class="parallax-overlay"></div>
-            <div class="container mx-auto px-6 z-10 relative flex justify-center">
-                <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Guitarras & baixos para todos os estilos.</h2>
-                    <p class="text-gray-300 mb-6">Do rock ao jazz, encontre o modelo certo com orientação de especialistas no WhatsApp.</p>
-                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20ver%20as%20op%C3%A7%C3%B5es%20de%20guitarras%20e%20baixos." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        Ver Guitarras e Baixos
-                    </a>
+        <!-- ========== SEÇÕES DE INSTRUMENTOS ========== -->
+        <div class="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 px-4 container mx-auto">
+            <!-- Card Guitarra -->
+            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal">
+                <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=2070&auto=format&fit=crop" class="bg-image-animated" alt="[Várias guitarras penduradas na parede]">
+                <div class="section-overlay"></div>
+                <div class="content-z flex flex-col items-center">
+                    <h3 class="text-4xl font-bold mb-4">Guitarras & Baixos</h3>
+                    <p class="text-gray-300 mb-6">Do rock ao jazz, encontre a vibe certa com orientação de especialistas.</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20ver%20as%20op%C3%A7%C3%B5es%20de%20guitarras%20e%20baixos." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Ver Opções</a>
                 </div>
             </div>
-        </section>
-
-        <!-- ========== SEÇÃO TECLADOS ========== -->
-        <section class="parallax parallax-keyboards min-h-[55vh] flex items-center justify-center">
-            <div class="parallax-overlay"></div>
-            <div class="container mx-auto px-6 z-10 relative flex justify-center">
-                 <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Teclados & Pianos, a tecla certa para cada músico.</h2>
-                    <p class="text-gray-300 mb-6">Do estudo ao estúdio, encontre o modelo ideal com orientação de especialistas no WhatsApp.</p>
-                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20teclados%20e%20pianos." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        Pedir Orçamento de Teclados
-                    </a>
+            <!-- Card Teclados -->
+            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal" style="transition-delay: 150ms;">
+                <img src="https://images.pexels.com/photos/2876659/pexels-photo-2876659.jpeg" class="bg-image-animated" alt="[Sintetizador em um estúdio de música]">
+                <div class="section-overlay"></div>
+                <div class="content-z flex flex-col items-center">
+                    <h3 class="text-4xl font-bold mb-4">Teclados & Pianos</h3>
+                    <p class="text-gray-300 mb-6">Do estudo ao estúdio, encontre a harmonia perfeita para você.</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20teclados%20e%20pianos." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Pedir Orçamento</a>
                 </div>
             </div>
-        </section>
-
-        <!-- ========== SEÇÃO BATERIAS ========== -->
-        <section class="parallax parallax-drums min-h-[55vh] flex items-center justify-center">
-            <div class="parallax-overlay"></div>
-            <div class="container mx-auto px-6 z-10 relative flex justify-center">
-                <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Baterias & Percussão, o ritmo que faz sua música pulsar.</h2>
-                    <p class="text-gray-300 mb-6">Encontre kits acústicos e eletrônicos, pratos e acessórios com orientação de especialistas no WhatsApp.</p>
-                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20para%20montar%20um%20kit%20de%20bateria." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        Montar meu Kit de Bateria
-                    </a>
+             <!-- Card Baterias -->
+            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal" style="transition-delay: 300ms;">
+                <img src="https://images.pexels.com/photos/5648599/pexels-photo-5648599.jpeg" class="bg-image-animated" alt="[Bateria iluminada em ambiente escuro]">
+                <div class="section-overlay"></div>
+                <div class="content-z flex flex-col items-center">
+                    <h3 class="text-4xl font-bold mb-4">Baterias & Percussão</h3>
+                    <p class="text-gray-300 mb-6">Sinta o ritmo e monte seu kit com a ajuda de quem entende.</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20para%20montar%20um%20kit%20de%20bateria." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Montar meu Kit</a>
                 </div>
             </div>
-        </section>
-
-        <!-- ========== SEÇÃO ESTÚDIO ========== -->
-        <section class="parallax parallax-studio min-h-[55vh] flex items-center justify-center">
-            <div class="parallax-overlay"></div>
-            <div class="container mx-auto px-6 z-10 relative flex justify-center">
-                <div class="bg-gray-900/80 p-10 rounded-lg md:max-w-xl text-center shadow-2xl">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Equipamentos de Estúdio & DJ com qualidade profissional ao seu alcance.</h2>
-                    <p class="text-gray-300 mb-6">De interfaces e microfones a controladoras e monitores, fale com um especialista no WhatsApp e encontre a melhor opção para seu projeto.</p>
-                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20equipamentos%20de%20est%C3%BAdio%20e%20DJ." target="_blank" class="whatsapp-button inline-block bg-orange-500 text-white font-bold py-3 px-8 rounded-full">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        Consultar Equipamentos
-                    </a>
+            <!-- Card Estúdio -->
+            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal" style="transition-delay: 450ms;">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop" class="bg-image-animated" alt="[Microfone de estúdio profissional]">
+                <div class="section-overlay"></div>
+                <div class="content-z flex flex-col items-center">
+                    <h3 class="text-4xl font-bold mb-4">Estúdio & DJ</h3>
+                    <p class="text-gray-300 mb-6">Equipamentos pro para suas produções e mixagens decolarem.</p>
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20equipamentos%20de%20est%C3%BAdio%20e%20DJ." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Consultar Equipamentos</a>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- ========== FINAL CTA SECTION ========== -->
         <section class="bg-black py-20">
-            <div class="container mx-auto px-6">
-                <div class="bg-orange-600 rounded-lg p-10 md:p-16 text-center flex flex-col items-center">
-                    <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4">Não espere mais para ter seu instrumento!</h2>
+            <div class="container mx-auto px-6 reveal">
+                <div class="bg-gradient-to-br from-orange-600 to-red-700 rounded-2xl p-10 md:p-16 text-center flex flex-col items-center shadow-2xl">
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-4">Não espere mais para criar seu som!</h2>
                     <p class="text-orange-100 text-lg max-w-2xl mb-8">
-                        Clique no botão abaixo e garanta uma <strong class="underline">oferta especial de boas-vindas</strong>. Válida somente para o primeiro contato!
+                        Clique abaixo e garanta uma <strong class="underline">oferta especial de boas-vindas</strong>, válida somente hoje para o seu primeiro contato!
                     </p>
-                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20minha%20oferta%20especial%20de%20boas-vindas." target="_blank" class="whatsapp-button inline-block bg-white text-orange-600 font-bold text-lg py-4 px-10 rounded-full shadow-lg" style="animation: glowing 2s infinite ease-in-out; box-shadow: 0 0 10px #fff, 0 0 20px #fff;">
+                    <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20minha%20oferta%20especial%20de%20boas-vindas." target="_blank" class="cta-button inline-block bg-white text-orange-600 font-bold text-lg py-4 px-10 rounded-full shadow-lg" style="animation-duration: 2s;">
                         <i class="fab fa-whatsapp mr-2"></i>
                         Resgatar Minha Oferta Agora!
                     </a>
@@ -189,10 +246,10 @@
         
         <!-- ========== MAPS SECTION ========== -->
         <section class="bg-black py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold">Onde Estamos</h2>
-                <div class="w-24 h-1 bg-orange-500 mx-auto mt-4"></div>
-                <p class="text-gray-400 mt-4 max-w-2xl mx-auto mb-10">Venha visitar a nossa loja e testar os instrumentos. Estamos ansiosos pela sua visita!</p>
+            <div class="container mx-auto px-6 text-center reveal">
+                <h2 class="text-4xl md:text-5xl font-bold">Venha nos Visitar</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-orange-500 to-red-500 mx-auto mt-4"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto mb-10">Teste os instrumentos e sinta a música de perto. Nossa equipe está te esperando!</p>
                 <div class="w-full rounded-lg overflow-hidden shadow-2xl border-2 border-gray-800">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.9685658517196!2d-49.27579022554197!3d-25.439314433258573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce5ed1b33bf17%3A0x65dc9c7f2fcfd3af!2sMega%20M%C3%BAsica!5e0!3m2!1spt-BR!2sbr!4v1757088448606!5m2!1spt-BR!2sbr"
@@ -210,17 +267,118 @@
     </main>
 
     <!-- ========== FOOTER ========== -->
-    <footer class="bg-gray-900 py-8">
+    <footer class="bg-gray-900/50 py-8">
         <div class="container mx-auto px-6 text-center text-gray-400">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.instagram.com/musica.curitiba/" class="hover:text-orange-500 transition-colors"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="https://www.instagram.com/musica.curitiba/" target="_blank" class="hover:text-orange-500 transition-colors"><i class="fab fa-instagram text-3xl"></i></a>
             </div>
             <p>&copy; 2025 Mega Música. Atendimento personalizado para todo o Brasil.</p>
             <p class="text-sm mt-2 text-gray-500">Rua 24 de Maio, 269 - Centro, Curitiba - PR, 80230-080</p>
         </div>
     </footer>
 
+    <script>
+        // --- SCRIPT PARA ANIMAÇÃO DE SCROLL ---
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Opcional: remover o observer depois da animação para performance
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.1 // Ativa quando 10% do elemento está visível
+        });
+
+        revealElements.forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- SCRIPT PARA PARTÍCULAS ANIMADAS ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(249, 115, 22, 0.4)';
+
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0,0,innerWidth, innerHeight);
+
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+        }
+
+        init();
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+        // --- SCRIPT HEADER ON SCROLL ---
+        const header = document.getElementById('header');
+        window.onscroll = function() {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-lg', 'shadow-orange-500/10');
+            } else {
+                header.classList.remove('shadow-lg', 'shadow-orange-500/10');
+            }
+        };
+
+    </script>
 </body>
 </html>
-
 
