@@ -59,40 +59,29 @@
             z-index: 1;
         }
         
-        /* Overlay para escurecer o fundo e dar legibilidade */
-        .section-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.75); /* Mais escuro para melhor contraste */
-            z-index: 2;
-        }
-
         .content-z {
             position: relative;
             z-index: 3;
         }
 
-        /* Animação Ken Burns (zoom sutil na imagem de fundo) */
-        @keyframes kenburns {
-            0% {
-                transform: scale(1.1) translate(0, 0);
-            }
-            100% {
-                transform: scale(1) translate(0, 0);
-            }
+        /* Efeito Parallax */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
         }
-
-        .bg-image-animated {
+        /* Overlay para escurecer o fundo parallax */
+        .parallax::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: kenburns 20s ease-out forwards;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2;
         }
         
         /* Animação de pulso para botões de CTA */
@@ -124,7 +113,7 @@
 
         /* Efeito de Vidro (Glassmorphism) */
         .glass-card {
-            background: rgba(17, 24, 39, 0.6); /* Cor de fundo com transparência */
+            background: rgba(17, 24, 39, 0.65); /* Cor de fundo com transparência */
             backdrop-filter: blur(15px); /* O efeito de desfoque */
             -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
@@ -158,9 +147,8 @@
     <main>
         <!-- ========== HERO SECTION ========== -->
         <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop" class="bg-image-animated" alt="[Palco de show com luzes coloridas]">
+            <div class="parallax absolute top-0 left-0 w-full h-full" style="background-image: url('https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop'); background-attachment: scroll;"></div>
             <canvas id="particle-canvas"></canvas>
-            <div class="section-overlay"></div>
             <div class="content-z container mx-auto px-6">
                 <h1 class="text-5xl md:text-8xl font-extrabold leading-tight mb-4 tracking-wider uppercase">
                     Pare de adiar <span class="gradient-text">o sonho de tocar</span>.
@@ -184,49 +172,71 @@
             </div>
         </div>
 
-        <!-- ========== SEÇÕES DE INSTRUMENTOS ========== -->
-        <div class="space-y-4 md:space-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 px-4 container mx-auto">
-            <!-- Card Guitarra -->
-            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal">
-                <img src="https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=2070&auto=format&fit=crop" class="bg-image-animated" alt="[Várias guitarras penduradas na parede]">
-                <div class="section-overlay"></div>
-                <div class="content-z flex flex-col items-center">
-                    <h3 class="text-4xl font-bold mb-4">Guitarras & Baixos</h3>
-                    <p class="text-gray-300 mb-6">Do rock ao jazz, encontre a vibe certa com orientação de especialistas.</p>
+        <!-- ========== SEÇÕES DE INSTRUMENTOS (PARALLAX) ========== -->
+        
+        <!-- Seção Guitarras -->
+        <section class="parallax min-h-[80vh] flex items-center reveal" style="background-image: url('https://images.unsplash.com/photo-1525201548942-d8732f6617a0?q=80&w=2070&auto=format&fit=crop')">
+            <div class="content-z container mx-auto px-6 flex justify-start">
+                <div class="max-w-md glass-card p-8 md:p-10">
+                    <h3 class="text-4xl font-bold mb-4 gradient-text">Guitarras & Baixos</h3>
+                    <p class="text-gray-300 mb-6">Encontre a vibe certa com orientação de especialistas.</p>
+                    <ul class="space-y-3 text-gray-200 mb-8 text-left">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1"></i><span>Marcas renomadas: Fender, Gibson, Ibanez e mais.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1"></i><span>Consultoria para pedais, cordas e amplificadores.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1"></i><span>Para todos os níveis, do iniciante ao profissional.</span></li>
+                    </ul>
                     <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20ver%20as%20op%C3%A7%C3%B5es%20de%20guitarras%20e%20baixos." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Ver Opções</a>
                 </div>
             </div>
-            <!-- Card Teclados -->
-            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal" style="transition-delay: 150ms;">
-                <img src="https://images.pexels.com/photos/2876659/pexels-photo-2876659.jpeg" class="bg-image-animated" alt="[Sintetizador em um estúdio de música]">
-                <div class="section-overlay"></div>
-                <div class="content-z flex flex-col items-center">
-                    <h3 class="text-4xl font-bold mb-4">Teclados & Pianos</h3>
-                    <p class="text-gray-300 mb-6">Do estudo ao estúdio, encontre a harmonia perfeita para você.</p>
+        </section>
+
+        <!-- Seção Teclados -->
+        <section class="parallax min-h-[80vh] flex items-center reveal" style="background-image: url('https://images.pexels.com/photos/2876659/pexels-photo-2876659.jpeg')">
+            <div class="content-z container mx-auto px-6 flex justify-end">
+                <div class="max-w-md glass-card p-8 md:p-10 text-right">
+                    <h3 class="text-4xl font-bold mb-4 gradient-text">Teclados & Pianos</h3>
+                    <p class="text-gray-300 mb-6">Encontre a harmonia perfeita para você, do estudo ao estúdio.</p>
+                    <ul class="space-y-3 text-gray-200 mb-8">
+                        <li class="flex items-start justify-end gap-3"><span class="text-right">Pianos digitais, sintetizadores e controladores MIDI.</span><i class="fas fa-check-circle text-orange-500 mt-1"></i></li>
+                        <li class="flex items-start justify-end gap-3"><span class="text-right">Teclas sensitivas para uma performance expressiva.</span><i class="fas fa-check-circle text-orange-500 mt-1"></i></li>
+                        <li class="flex items-start justify-end gap-3"><span class="text-right">Timbres realistas e recursos para produção musical.</span><i class="fas fa-check-circle text-orange-500 mt-1"></i></li>
+                    </ul>
                     <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Gostaria%20de%20um%20or%C3%A7amento%20para%20teclados%20e%20pianos." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Pedir Orçamento</a>
                 </div>
             </div>
-             <!-- Card Baterias -->
-            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal" style="transition-delay: 300ms;">
-                <img src="https://images.pexels.com/photos/5648599/pexels-photo-5648599.jpeg" class="bg-image-animated" alt="[Bateria iluminada em ambiente escuro]">
-                <div class="section-overlay"></div>
-                <div class="content-z flex flex-col items-center">
-                    <h3 class="text-4xl font-bold mb-4">Baterias & Percussão</h3>
+        </section>
+
+        <!-- Seção Baterias -->
+        <section class="parallax min-h-[80vh] flex items-center reveal" style="background-image: url('https://images.pexels.com/photos/5648599/pexels-photo-5648599.jpeg')">
+            <div class="content-z container mx-auto px-6 flex justify-start">
+                <div class="max-w-md glass-card p-8 md:p-10">
+                    <h3 class="text-4xl font-bold mb-4 gradient-text">Baterias & Percussão</h3>
                     <p class="text-gray-300 mb-6">Sinta o ritmo e monte seu kit com a ajuda de quem entende.</p>
+                    <ul class="space-y-3 text-gray-200 mb-8 text-left">
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1"></i><span>Kits acústicos e eletrônicos para qualquer ambiente.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1"></i><span>Grande variedade de pratos, peles e ferragens.</span></li>
+                        <li class="flex items-start gap-3"><i class="fas fa-check-circle text-orange-500 mt-1"></i><span>Soluções para estudo silencioso e shows ao vivo.</span></li>
+                    </ul>
                     <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20para%20montar%20um%20kit%20de%20bateria." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Montar meu Kit</a>
                 </div>
             </div>
-            <!-- Card Estúdio -->
-            <div class="relative min-h-[500px] flex items-end justify-center text-center p-6 rounded-2xl overflow-hidden reveal" style="transition-delay: 450ms;">
-                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop" class="bg-image-animated" alt="[Microfone de estúdio profissional]">
-                <div class="section-overlay"></div>
-                <div class="content-z flex flex-col items-center">
-                    <h3 class="text-4xl font-bold mb-4">Estúdio & DJ</h3>
-                    <p class="text-gray-300 mb-6">Equipamentos pro para suas produções e mixagens decolarem.</p>
+        </section>
+
+        <!-- Seção Estúdio -->
+        <section class="parallax min-h-[80vh] flex items-center reveal" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop')">
+            <div class="content-z container mx-auto px-6 flex justify-end">
+                <div class="max-w-md glass-card p-8 md:p-10 text-right">
+                    <h3 class="text-4xl font-bold mb-4 gradient-text">Estúdio & DJ</h3>
+                    <p class="text-gray-300 mb-6">Equipamentos pro para suas produções decolarem.</p>
+                    <ul class="space-y-3 text-gray-200 mb-8">
+                        <li class="flex items-start justify-end gap-3"><span class="text-right">Interfaces de áudio, microfones e monitores.</span><i class="fas fa-check-circle text-orange-500 mt-1"></i></li>
+                        <li class="flex items-start justify-end gap-3"><span class="text-right">Controladoras, mixers e fones para DJs.</span><i class="fas fa-check-circle text-orange-500 mt-1"></i></li>
+                        <li class="flex items-start justify-end gap-3"><span class="text-right">Grave suas ideias com qualidade profissional.</span><i class="fas fa-check-circle text-orange-500 mt-1"></i></li>
+                    </ul>
                     <a href="https://wa.me/5541992558504?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20equipamentos%20de%20est%C3%BAdio%20e%20DJ." target="_blank" class="cta-button bg-orange-500 text-white font-bold py-3 px-8 rounded-full">Consultar Equipamentos</a>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- ========== FINAL CTA SECTION ========== -->
         <section class="bg-black py-20">
@@ -290,7 +300,7 @@
                 }
             });
         }, {
-            threshold: 0.1 // Ativa quando 10% do elemento está visível
+            threshold: 0.15 // Ativa quando 15% do elemento está visível
         });
 
         revealElements.forEach(el => {
@@ -381,4 +391,5 @@
     </script>
 </body>
 </html>
+
 
